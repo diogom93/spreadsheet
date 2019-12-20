@@ -13,7 +13,7 @@ class Row extends Component {
                     x={i}
                     handleChangedCell={this.props.handleChangedCell}
                     updateCell={this.props.updateCell}
-                    value={this.props.rowData[i] || ''}/>
+                    value={this.props.rowData[i] || ''} />
             )
         }
 

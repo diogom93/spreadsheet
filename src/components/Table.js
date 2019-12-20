@@ -33,7 +33,7 @@ class Table extends Component {
             rows.push(
                 <Row handleChangedCell={this.handleChangedCell}
                     updateCells={this.updateCells}
-                    key={y}
+                    key={i}
                     y={i}
                     x={this.props.x + 1}
                     rowData={rowData} />
