@@ -15,27 +15,31 @@ class Table extends Component {
 
         this.parser = new FormulaParser();
 
-        this.parser.on('callCellValue', (cellCoordinate, done) => {
-            const x = cellCoordinate.column.index + 1;
-            const y = cellCoordinate.row.index + 1;
+        this.parser.on('callCellValue', this.handleFormulaCellReference);
+        this.parser.on('callRangeValue', this.handleFormulaCellRangeReference);
+    }
 
-            if (x > props.x || y > props.y) {
-                throw this.parser.Error(this.parser.ERROR_NOT_AVAILABLE);
-            }
+    handleFormulaCellReference = (cellCoordinate, done) => {
+        const x = cellCoordinate.column.index + 1;
+        const y = cellCoordinate.row.index + 1;
 
-            if (x === props.x && y === props.y) {
-                throw this.parser.Error(this.parser.ERROR_REF);
-            }
+        if (x > this.props.x || y > this.props.y) {
+            throw this.parser.Error(this.parser.ERROR_NOT_AVAILABLE);
+        }
 
-            if (!this.state.data[y] || !this.state.data[y][x]) {
-                return done('');
-            }
+        if (x === this.props.x && y === this.props.y) {
+            throw this.parser.Error(this.parser.ERROR_REF);
+        }
 
-            return done(this.state.data[y][x]);
-        });
+        if (!this.state.data[y] || !this.state.data[y][x]) {
+            return done('');
+        }
 
-        this.parser.on('callRangeValue', (startCellCoordinate, endCellCoordinate, done) => {
-            const startX = startCellCoordinate.column.index + 1;
+        return done(this.state.data[y][x]);
+    }
+
+    handleFormulaCellRangeReference = (startCellCoordinate, endCellCoordinate, done) => {
+        const startX = startCellCoordinate.column.index + 1;
             const startY = startCellCoordinate.row.index + 1;
             const endX = endCellCoordinate.column.index + 1;
             const endY = endCellCoordinate.row.index + 1;
@@ -73,7 +77,6 @@ class Table extends Component {
             if (fragment) {
                 done(fragment);
             }
-        });
     }
 
     componentWillMount = () => {
