@@ -40,43 +40,43 @@ class Table extends Component {
 
     handleFormulaCellRangeReference = (startCellCoordinate, endCellCoordinate, done) => {
         const startX = startCellCoordinate.column.index + 1;
-            const startY = startCellCoordinate.row.index + 1;
-            const endX = endCellCoordinate.column.index + 1;
-            const endY = endCellCoordinate.row.index + 1;
-            const fragment = [];
+        const startY = startCellCoordinate.row.index + 1;
+        const endX = endCellCoordinate.column.index + 1;
+        const endY = endCellCoordinate.row.index + 1;
+        const fragment = [];
 
-            for (let y = startY; y <= endY; y++) {
-                const row = this.state.data[y];
-                if (!row) {
-                    continue;
-                }
-
-                const columnFragment = [];
-
-                for (let x = startX; x <= endX; x++) {
-                    let value = row[x];
-                    if (!value) {
-                        value = '';
-                    }
-
-                    if (value.slice(0, 1) === '=') {
-                        const res = this.executeFormula({x, y}, value.slice(1));
-                        if (res.error) {
-                            throw this.parser.Error(res.error);
-                        }
-
-                        value = res.result;
-                    }
-
-                    columnFragment.push(value);
-                }
-
-                fragment.push(columnFragment);
+        for (let y = startY; y <= endY; y++) {
+            const row = this.state.data[y];
+            if (!row) {
+                continue;
             }
 
-            if (fragment) {
-                done(fragment);
+            const columnFragment = [];
+
+            for (let x = startX; x <= endX; x++) {
+                let value = row[x];
+                if (!value) {
+                    value = '';
+                }
+
+                if (value.slice(0, 1) === '=') {
+                    const res = this.executeFormula({x, y}, value.slice(1));
+                    if (res.error) {
+                        throw this.parser.Error(res.error);
+                    }
+
+                    value = res.result;
+                }
+
+                columnFragment.push(value);
             }
+
+            fragment.push(columnFragment);
+        }
+
+        if (fragment) {
+            done(fragment);
+        }
     }
 
     componentWillMount = () => {
