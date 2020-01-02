@@ -10,7 +10,7 @@ class Cell extends Component {
             value: props.value
         }
 
-        this.display = props.value;
+        this.display = this.determineDisplay({x: props.x, y: props.y}, props.value);
         this.timer = 0;
         this.delay = 200;
         this.prevent = false;
@@ -20,8 +20,20 @@ class Cell extends Component {
         window.document.addEventListener('unselectAll', this.handleUnselectAll);
     }
 
+    shouldComponentUpdate = (nextProps, nextState) => {
+        if (this.state.value !== '' && this.state.value.slice(0, 1) === '=') {
+            return true;
+        }
+
+        if (nextState.value !== this.state.value || nextState.editing !== this.state.editing || nextState.selected !== this.state.selected || nextProps.value !== this.props.value) {
+                return true;
+            }
+
+        return false;
+    }
+
     componentWillUpdate() {
-        this.display = this.state.value;
+        this.display = this.determineDisplay({x: this.props.x, y: this.props.y}, this.state.value);
     }
 
     componentWillUnmount() {
@@ -64,7 +76,7 @@ class Cell extends Component {
 
     handleChange = event => {
         this.setState({value: event.target.value});
-        this.display = event.target.value;
+        this.display = this.determineDisplay({x: this.props.x, y: this.props.y}, event.target.value);
     }
 
     handleUnselectAll = () => {
@@ -81,6 +93,19 @@ class Cell extends Component {
     hasNewValue = value => {
         this.props.handleChangedCell({x: this.props.x, y: this.props.y}, value);
         this.setState({editing: false});
+    }
+
+    determineDisplay = ({x, y}, value) => {
+        if (value.slice(0, 1) === '=') {
+            const res = this.props.executeFormula({x, y}, value.slice(1));
+            if (res.error) {
+                return '#INVALID!';
+            }
+
+            return res.result;
+        }
+
+        return value;
     }
 
     calculateCss = () => {
@@ -120,7 +145,7 @@ class Cell extends Component {
         const css = this.calculateCss();
 
         if (this.props.y === 0) {
-            const alpha = ' abcdefhijklmnopqrstuvwxyz'.split('');
+            const alpha = ' abcdefhijklmnopqrstuvwxyz'.toUpperCase().split('');
             return (
                 <span onKeyPress={this.handleKeyPressOnSpan}
                     style={css}

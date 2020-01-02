@@ -886,6 +886,19 @@
   resolved "https://registry.yarnpkg.com/@csstools/normalize.css/-/normalize.css-10.1.0.tgz#f0950bba18819512d42f7197e56c518aa491cf18"
   integrity sha512-ij4wRiunFfaJxjB0BdrYHIH8FxBJpOwNPhhAcunlmPdXudL1WQV1qoP9un6JsEBAgQH+7UXyyjh0g7jTxXK6tg==
 
+"@handsontable/formulajs@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@handsontable/formulajs/-/formulajs-2.0.1.tgz#e0b15f085bf485702dd776b6e95269630ae44e98"
+  integrity sha512-jTdJO/6ZmuaHoiTdnraGbPkdnA7m0VMrZ54vWXi22WpwnsIKAWbqjWTwvDoSuEpcc7/YHVIVlSDtfXHKmaYhdQ==
+  dependencies:
+    "@handsontable/jstat" "^1.0.0"
+    bessel "^0.2.0"
+
+"@handsontable/jstat@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@handsontable/jstat/-/jstat-1.0.0.tgz#0cb40e6ee44e2e0188bf047c43551920ae220270"
+  integrity sha512-5XxZ9xIk6iSjrc1p5N/yI2dofBXp0IzZVgrkETDC196SxoJCRNOeKgM9fTHMhoxa02wuaZPLp6stojlppNxP/A==
+
 "@hapi/address@2.x.x":
   version "2.1.4"
   resolved "https://registry.yarnpkg.com/@hapi/address/-/address-2.1.4.tgz#5d67ed43f3fd41a69d4b9ff7b56e7c0d1d0a81e5"
@@ -2132,6 +2145,13 @@ bcrypt-pbkdf@^1.0.0:
   integrity sha1-pDAdOJtqQ/m2f/PKEaP2Y342Dp4=
   dependencies:
     tweetnacl "^0.14.3"
+
+bessel@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/bessel/-/bessel-0.2.0.tgz#13cb39cd29233219ec2da725e0ba0c66fb46b6f2"
+  integrity sha1-E8s5zSkjMhnsLacl4LoMZvtGtvI=
+  dependencies:
+    voc ""
 
 big.js@^5.2.2:
   version "5.2.2"
@@ -4715,6 +4735,14 @@ hosted-git-info@^2.1.4:
   version "2.8.5"
   resolved "https://registry.yarnpkg.com/hosted-git-info/-/hosted-git-info-2.8.5.tgz#759cfcf2c4d156ade59b0b2dfabddc42a6b9c70c"
   integrity sha512-kssjab8CvdXfcXMXVcvsXum4Hwdq9XGtRD3TteMEvEbq0LXyiNQr6AprqKqfeaDXze7SxWvRxdpwE6ku7ikLkg==
+
+hot-formula-parser@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/hot-formula-parser/-/hot-formula-parser-3.0.1.tgz#9ec0d3abd691d9dbe3febec51027ebb7d4f1efd4"
+  integrity sha512-QhYPVlVh/GF/hHtBp+MwgDp5kpgrrjeJi3d3/GxTWtqwLBOOM4KlZT/YWcsfZj5JE68MNvFgj3ZzYpkGyvGtwA==
+  dependencies:
+    "@handsontable/formulajs" "^2.0.1"
+    tiny-emitter "^2.0.1"
 
 hpack.js@^2.1.6:
   version "2.1.6"
@@ -9725,6 +9753,11 @@ timsort@^0.3.0:
   resolved "https://registry.yarnpkg.com/timsort/-/timsort-0.3.0.tgz#405411a8e7e6339fe64db9a234de11dc31e02bd4"
   integrity sha1-QFQRqOfmM5/mTbmiNN4R3DHgK9Q=
 
+tiny-emitter@^2.0.1:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/tiny-emitter/-/tiny-emitter-2.1.0.tgz#1d1a56edfc51c43e863cbb5382a72330e3555423"
+  integrity sha512-NB6Dk1A9xgQPMoGqC5CVXn123gWyte215ONT5Pp5a0yt4nlEoO1ZWeCwpncaekPHXO60i47ihFnZPiRPjRMq4Q==
+
 tmp@^0.0.33:
   version "0.0.33"
   resolved "https://registry.yarnpkg.com/tmp/-/tmp-0.0.33.tgz#6d34335889768d21b2bcda0aa277ced3b1bfadf9"
@@ -10095,6 +10128,11 @@ vm-browserify@^1.0.1:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/vm-browserify/-/vm-browserify-1.1.2.tgz#78641c488b8e6ca91a75f511e7a3b32a86e5dda0"
   integrity sha512-2ham8XPWTONajOR0ohOKOHXkm3+gaBmGut3SRuu75xLd/RRaY6vqgh8NBYYk7+RW3u5AtzPQZG8F10LHkl0lAQ==
+
+voc@:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/voc/-/voc-1.1.0.tgz#d1a08aeff66646bf17cdba2e47c935a7a9b0218b"
+  integrity sha512-fthgd8OJLqq8vPcLjElTk6Rcl2e3v5ekcXauImaqEnQqd5yUWKg1+ZOBgS2KTWuVKcuvZMQq4TDptiT1uYddUA==
 
 w3c-hr-time@^1.0.1:
   version "1.0.1"

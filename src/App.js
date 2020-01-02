@@ -5,7 +5,7 @@ import Table from './components/Table';
 
 function App() {
     return (
-        <Table x={10} y={10} />
+        <Table x={10} y={10} id={'1'}/>
     );
 }
 
