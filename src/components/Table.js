@@ -35,6 +35,11 @@ class Table extends Component {
             return done('');
         }
 
+        if (this.state.data[y][x].slice(0, 1) === '=') {
+            const res = this.executeFormula({x, y}, this.state.data[y][x].slice(1));
+            return done(res.result);
+        }
+
         return done(this.state.data[y][x]);
     }
 
@@ -92,10 +97,6 @@ class Table extends Component {
         let res = this.parser.parse(value);
         if (res.error || res.result.toString() === '') {
             return res;
-        }
-
-        if (res.result.toString().slice(0, 1) === '=') {
-            res = this.executeFormula(cell, res.result.slice(1));
         }
 
         return res;
